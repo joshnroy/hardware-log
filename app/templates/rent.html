@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Rent Hardware</h1>
+<p>If you're not entirely sure what you would like, please come talk with us
+at the hardware lab!</p>
+<form action="" method="post" name="add">
+  {{ form.hidden_tag() }}
+  <div class="form-group">
+    <label for="form-name">Please choose a hardware device*</label>
+    {{ form.name(class_="form-control", id_="form-name") }}
+  </div>
+  <div class="form-group">
+    <label for="form-renter-name">Please enter your name*</label>
+    {{ form.renter_name(class_="form-control", id_="form-renter-name",
+    placeholder="Josiah Carberry") }}
+  </div>
+  <div class="form-group">
+    <label for="form-renter-email">Please enter your email*</label>
+    {{ form.renter_email(class_="form-control", id_="form-renter-email",
+    placeholder="josiah_carberry@brown.edu") }}
+  </div>
+  <div class="from-group">
+    <label for="form-renter-phone-number">Please enter your phone number*</label>
+    {{ form.renter_phone_number(class_="form-control",
+    id_="form-renter-phone-number", placeholder="123-456-7890") }}
+  </div>
+  <div class="from-group">
+    <label for="form-renter-idea">Tell us about your idea if you like! This
+      will enable us to make sure that you have all of the hardware you need.</label>
+    {{ form.renter_idea(class_="form-control",
+    id_="form-renter-idea", placeholder="We are making a glove that allows you to feel wifi networks with your hand. It detects the wifi networks, and buzzes to notify you what it's doing.") }}
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Rent</button>
+</form>
+{% endblock %}

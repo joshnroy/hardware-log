@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Add New Hardware</h1>
+<form action="" method="post" name="add">
+  {{ form.hidden_tag() }}
+  <div class="form-group">
+    <label for="form-name">Please enter the name of the hardware device</label>
+      {{ form.name(class_="form-control", id_="form-name",
+    placeholder="Arduino") }}
+    <small id="name-help" class="form-text text-muted">This name will be
+      visible to the hackathon participants</small>
+  </div>
+  <div class="form-group">
+    <label for="form-number">Please enter the number you want to add to the
+      database</label>
+    {{ form.number(class_="form-control", id_="form-number") }}
+  </div>
+  <button type="submit" class="btn btn-primary">Add</button>
+</form>
+{% endblock %}

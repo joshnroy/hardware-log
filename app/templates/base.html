@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/static/css/custom.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width,
+    initial-scale=1.0">
+    {% if title %}
+    <title>{{ title }} - Hardware Log</title>
+    {% else %}
+    <title>Hardware Log</title>
+    {% endif %}
+  </head>
+  <body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="{{ url_for('index') }}">Hardware Log</a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('add') }}">Add Hardware <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{{ url_for('rent') }}">Rent Hardware <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container content-stuff">
+    {% block content %}{% endblock %}
+    </div>
+  </div>
+  </body>
+</html>

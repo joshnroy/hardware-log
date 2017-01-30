@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Available</h1>
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Item Name</th>
+      <th>Number Available</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for entry in available.keys() %}
+    <tr>
+      <td>{{ entry }}</td>
+      <td>{{ available[entry] }}</td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+<h1>Requests</h1>
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Item Name</th>
+      <th>Renter Name</th>
+      <th>Renter Email</th>
+      <th>Renter Phone Number</th>
+      <th>Renter Idea</th>
+      {% if current_user.is_authenticated %}
+      <th>Confirm</th>
+      <th>Return</th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+{% for entry in requested %}
+    <tr>
+      <td>{{ entry.name }}</td>
+      <td>{{ entry['renter-name'] }}</td>
+      <td>{{ entry['renter-email'] }}</td>
+      <td>{{ entry['renter-phone-number'] }}</td>
+      <td><p>{{ entry['renter-idea'] }}</p></td>
+      {% if current_user.is_authenticated %}
+      <td><a href="{{ url_for('confirm') }}?uuid={{ entry.uuid }}" class="btn btn-success">Confirm</a></td>
+      <td><a href="{{ url_for('unrent') }}?uuid={{ entry.uuid }}" class="btn btn-warning">Return</a></td>
+      {% endif %}
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+<h1>Rented</h1>
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Item Name</th>
+      <th>Renter Name</th>
+      <th>Renter Email</th>
+      <th>Renter Phone Number</th>
+      <th>Renter Idea</th>
+      {% if current_user.is_authenticated %}
+      <th>Return</th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+{% for entry in rented %}
+    <tr>
+      <td>{{ entry.name }}</td>
+      <td>{{ entry['renter-name'] }}</td>
+      <td>{{ entry['renter-email'] }}</td>
+      <td>{{ entry['renter-phone-number'] }}</td>
+      <td><p>{{ entry['renter-idea'] }}</p></td>
+      {% if current_user.is_authenticated %}
+      <td><a href="{{ url_for('unrent') }}?uuid={{ entry.uuid }}" class="btn btn-warning">Return</a></td>
+      {% endif %}
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+{% endblock %}
