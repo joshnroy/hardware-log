@@ -17,6 +17,7 @@
 {% endfor %}
   </tbody>
 </table>
+{% if current_user.is_authenticated %}
 <h1>Requests</h1>
 <table class="table table-hover table-bordered">
   <thead>
@@ -26,10 +27,8 @@
       <th>Renter Email</th>
       <th>Renter Phone Number</th>
       <th>Renter Idea</th>
-      {% if current_user.is_authenticated %}
       <th>Confirm</th>
       <th>Return</th>
-      {% endif %}
     </tr>
   </thead>
   <tbody>
@@ -48,6 +47,8 @@
 {% endfor %}
   </tbody>
 </table>
+{% endif %}
+{% if current_user.is_authenticated %}
 <h1>Rented</h1>
 <table class="table table-hover table-bordered">
   <thead>
@@ -57,9 +58,7 @@
       <th>Renter Email</th>
       <th>Renter Phone Number</th>
       <th>Renter Idea</th>
-      {% if current_user.is_authenticated %}
       <th>Return</th>
-      {% endif %}
     </tr>
   </thead>
   <tbody>
@@ -77,4 +76,5 @@
 {% endfor %}
   </tbody>
 </table>
+{% endif %}
 {% endblock %}
