@@ -79,7 +79,7 @@ def unrent():
 def login():
     form = LoginForm()
     if request.method == 'POST' and form.validate_on_submit():
-        user = app.config['USERS_COLLECTION'].find_one({"_id": form.username.data})
+        user = mongo.db.users.find_one({"_id": form.username.data})
         if user and User.validate_login(user['password'], form.password.data):
             user_obj = User(user['_id'])
             login_user(user_obj)
@@ -96,7 +96,7 @@ def logout():
 
 @lm.user_loader
 def load_user(username):
-    u = app.config['USERS_COLLECTION'].find_one({"_id": username})
+    u = mongo.db.users.find_one({"_id": username})
     if not u:
         return None
     return User(u['_id'])
