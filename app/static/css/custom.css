@@ -3,5 +3,9 @@
 }
 
 .container-fluid {
+  background-color: white;
+}
+
+body {
   background-color: #290066;
 }
