@@ -14,6 +14,7 @@ from .forms import AddForm, RentForm, LoginForm
 from .user import User
 from flask.ext.login import login_user, logout_user, login_required
 from uuid import uuid4
+from collections import OrderedDict
 
 @app.route('/')
 @app.route('/index')
@@ -24,9 +25,11 @@ def index():
             available[x['name']] += 1
         else:
             available[x['name']] = 1
-    rented = mongo.db.hardware.find({'status': 'rented'})
-    requested = mongo.db.hardware.find({'status': 'requested'})
-    return render_template('index.html', available=available, rented=rented,
+    rented = mongo.db.hardware.find({'status': 'rented'}).sort([('name', 1)])
+    requested = mongo.db.hardware.find({'status': 'requested'}).sort([('name', 1)])
+    better_thing = OrderedDict(sorted(available.items(), key=lambda t: t[0]))
+    return render_template('index.html',
+            available=better_thing, rented=rented,
             requested=requested)
 
 @app.route('/add', methods=['GET', 'POST'])
